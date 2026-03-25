@@ -1,0 +1,894 @@
+.
+├── a.out
+├── build
+│   
+├── CMakeLists.txt
+├── examples
+│   └── basic.mlir
+├── include
+│   ├── CMakeLists.txt
+│   └── my-mlir
+│       ├── CMakeLists.txt
+│       └── Dialect
+│           ├── CMakeLists.txt
+│           └── MyDialect
+│               ├── CMakeLists.txt
+│               ├── Conversion
+│               │   ├── CMakeLists.txt
+│               │   ├── LowerToTarget.h
+│               │   └── Passes.h
+│               ├── IR
+│               │   ├── CMakeLists.txt
+│               │   ├── MyDialectBase.td
+│               │   ├── MyDialectDialect.h
+│               │   ├── MyDialectOps.h
+│               │   ├── MyDialectOps.td
+│               │   ├── MyDialect.td
+│               │   ├── MyDialectTypes.h
+│               │   └── MyDialectTypes.td
+│               └── Transforms
+│                   ├── CMakeLists.txt
+│                   ├── ExampleTransform.h
+│                   ├── GroupedPasses.h
+│                   ├── MyDialectPasses.td
+│                   ├── Passes.h
+│                   └── Patterns.h
+├── lib
+│   ├── CMakeLists.txt
+│   └── Dialect
+│       ├── CMakeLists.txt
+│       └── MyDialect
+│           ├── CMakeLists.txt
+│           ├── Conversion
+│           │   ├── CMakeLists.txt
+│           │   ├── LowerToTarget.cpp
+│           │   └── Passes.cpp
+│           ├── IR
+│           │   ├── CMakeLists.txt
+│           │   ├── MyDialectBase.cpp
+│           │   └── MyDialectOps.cpp
+│           └── Transforms
+│               ├── CMakeLists.txt
+│               ├── ExampleTransform.cpp
+│               ├── GroupedPasses.cpp
+│               ├── MyTransform.cpp
+│               ├── Passes.cpp
+│               └── Patterns.cpp
+├── README.md
+├── test
+│   ├── CMakeLists.txt
+│   ├── conversion
+│   │   └── lower-to-target.mlir
+│   ├── dialect
+│   │   └── parse-print.mlir
+│   ├── lit.cfg.py
+│   ├── lit.site.cfg.py.in
+│   └── transforms
+│       └── example-transform.mlir
+└── tools
+    ├── CMakeLists.txt
+    └── my-mlir-opt
+        ├── CMakeLists.txt
+        └── my-mlir-opt.cpp
+
+87 directories, 330 files
+.
+├── a.out
+├── build
+│   ├── CMakeCache.txt
+│   ├── CMakeFiles
+│   │   ├── 3.28.3
+│   │   │   ├── CMakeCCompiler.cmake
+│   │   │   ├── CMakeCXXCompiler.cmake
+│   │   │   ├── CMakeDetermineCompilerABI_C.bin
+│   │   │   ├── CMakeDetermineCompilerABI_CXX.bin
+│   │   │   ├── CMakeSystem.cmake
+│   │   │   ├── CompilerIdC
+│   │   │   │   ├── a.out
+│   │   │   │   ├── CMakeCCompilerId.c
+│   │   │   │   └── tmp
+│   │   │   └── CompilerIdCXX
+│   │   │       ├── a.out
+│   │   │       ├── CMakeCXXCompilerId.cpp
+│   │   │       └── tmp
+│   │   ├── acc_gen.dir
+│   │   │   ├── build.make
+│   │   │   ├── cmake_clean.cmake
+│   │   │   ├── compiler_depend.make
+│   │   │   ├── compiler_depend.ts
+│   │   │   ├── DependInfo.cmake
+│   │   │   └── progress.make
+│   │   ├── cmake.check_cache
+│   │   ├── CMakeConfigureLog.yaml
+│   │   ├── CMakeDirectoryInformation.cmake
+│   │   ├── CMakeRuleHashes.txt
+│   │   ├── intrinsics_gen.dir
+│   │   │   ├── build.make
+│   │   │   ├── cmake_clean.cmake
+│   │   │   ├── compiler_depend.make
+│   │   │   ├── compiler_depend.ts
+│   │   │   ├── DependInfo.cmake
+│   │   │   └── progress.make
+│   │   ├── Makefile2
+│   │   ├── Makefile.cmake
+│   │   ├── mlir-doc.dir
+│   │   │   ├── build.make
+│   │   │   ├── cmake_clean.cmake
+│   │   │   ├── compiler_depend.make
+│   │   │   ├── compiler_depend.ts
+│   │   │   ├── DependInfo.cmake
+│   │   │   └── progress.make
+│   │   ├── mlir-generic-headers.dir
+│   │   │   ├── build.make
+│   │   │   ├── cmake_clean.cmake
+│   │   │   ├── compiler_depend.make
+│   │   │   ├── compiler_depend.ts
+│   │   │   ├── DependInfo.cmake
+│   │   │   └── progress.make
+│   │   ├── mlir-headers.dir
+│   │   │   ├── build.make
+│   │   │   ├── cmake_clean.cmake
+│   │   │   ├── compiler_depend.make
+│   │   │   ├── compiler_depend.ts
+│   │   │   ├── DependInfo.cmake
+│   │   │   └── progress.make
+│   │   ├── mlir-tablegen-targets.dir
+│   │   │   ├── build.make
+│   │   │   ├── cmake_clean.cmake
+│   │   │   ├── compiler_depend.make
+│   │   │   ├── compiler_depend.ts
+│   │   │   ├── DependInfo.cmake
+│   │   │   └── progress.make
+│   │   ├── omp_gen.dir
+│   │   │   ├── build.make
+│   │   │   ├── cmake_clean.cmake
+│   │   │   ├── compiler_depend.make
+│   │   │   ├── compiler_depend.ts
+│   │   │   ├── DependInfo.cmake
+│   │   │   └── progress.make
+│   │   ├── pkgRedirects
+│   │   ├── Progress
+│   │   │   ├── 14
+│   │   │   ├── 19
+│   │   │   ├── 20
+│   │   │   ├── 3
+│   │   │   ├── 4
+│   │   │   ├── 5
+│   │   │   ├── 6
+│   │   │   ├── 7
+│   │   │   ├── 8
+│   │   │   └── count.txt
+│   │   ├── progress.marks
+│   │   ├── RISCVTargetParserTableGen.dir
+│   │   │   ├── build.make
+│   │   │   ├── cmake_clean.cmake
+│   │   │   ├── compiler_depend.make
+│   │   │   ├── compiler_depend.ts
+│   │   │   ├── DependInfo.cmake
+│   │   │   └── progress.make
+│   │   └── TargetDirectories.txt
+│   ├── cmake_install.cmake
+│   ├── include
+│   │   ├── CMakeFiles
+│   │   │   ├── CMakeDirectoryInformation.cmake
+│   │   │   └── progress.marks
+│   │   ├── cmake_install.cmake
+│   │   ├── Makefile
+│   │   └── my-mlir
+│   │       ├── CMakeFiles
+│   │       │   ├── CMakeDirectoryInformation.cmake
+│   │       │   └── progress.marks
+│   │       ├── cmake_install.cmake
+│   │       ├── Dialect
+│   │       │   ├── CMakeFiles
+│   │       │   │   ├── CMakeDirectoryInformation.cmake
+│   │       │   │   └── progress.marks
+│   │       │   ├── cmake_install.cmake
+│   │       │   ├── Makefile
+│   │       │   └── MyDialect
+│   │       │       ├── CMakeFiles
+│   │       │       │   ├── CMakeDirectoryInformation.cmake
+│   │       │       │   └── progress.marks
+│   │       │       ├── cmake_install.cmake
+│   │       │       ├── Conversion
+│   │       │       │   ├── CMakeFiles
+│   │       │       │   │   ├── CMakeDirectoryInformation.cmake
+│   │       │       │   │   └── progress.marks
+│   │       │       │   ├── cmake_install.cmake
+│   │       │       │   └── Makefile
+│   │       │       ├── IR
+│   │       │       │   ├── CMakeFiles
+│   │       │       │   │   ├── CMakeDirectoryInformation.cmake
+│   │       │       │   │   ├── MyDialectIRIncGen.dir
+│   │       │       │   │   │   ├── build.make
+│   │       │       │   │   │   ├── cmake_clean.cmake
+│   │       │       │   │   │   ├── compiler_depend.make
+│   │       │       │   │   │   ├── compiler_depend.ts
+│   │       │       │   │   │   ├── DependInfo.cmake
+│   │       │       │   │   │   └── progress.make
+│   │       │       │   │   └── progress.marks
+│   │       │       │   ├── cmake_install.cmake
+│   │       │       │   ├── Makefile
+│   │       │       │   ├── MyDialectBase.cpp.inc
+│   │       │       │   ├── MyDialectBase.h.inc
+│   │       │       │   ├── MyDialectOps.cpp.inc
+│   │       │       │   └── MyDialectOps.h.inc
+│   │       │       ├── Makefile
+│   │       │       └── Transforms
+│   │       │           ├── CMakeFiles
+│   │       │           │   ├── CMakeDirectoryInformation.cmake
+│   │       │           │   └── progress.marks
+│   │       │           ├── cmake_install.cmake
+│   │       │           └── Makefile
+│   │       └── Makefile
+│   ├── lib
+│   │   ├── CMakeFiles
+│   │   │   ├── CMakeDirectoryInformation.cmake
+│   │   │   └── progress.marks
+│   │   ├── cmake_install.cmake
+│   │   ├── Dialect
+│   │   │   ├── CMakeFiles
+│   │   │   │   ├── CMakeDirectoryInformation.cmake
+│   │   │   │   └── progress.marks
+│   │   │   ├── cmake_install.cmake
+│   │   │   ├── Makefile
+│   │   │   └── MyDialect
+│   │   │       ├── CMakeFiles
+│   │   │       │   ├── CMakeDirectoryInformation.cmake
+│   │   │       │   └── progress.marks
+│   │   │       ├── cmake_install.cmake
+│   │   │       ├── Conversion
+│   │   │       │   ├── CMakeFiles
+│   │   │       │   │   ├── CMakeDirectoryInformation.cmake
+│   │   │       │   │   ├── install-MLIRMyDialectConversion.dir
+│   │   │       │   │   │   ├── build.make
+│   │   │       │   │   │   ├── cmake_clean.cmake
+│   │   │       │   │   │   ├── compiler_depend.make
+│   │   │       │   │   │   ├── compiler_depend.ts
+│   │   │       │   │   │   ├── DependInfo.cmake
+│   │   │       │   │   │   └── progress.make
+│   │   │       │   │   ├── install-MLIRMyDialectConversion-stripped.dir
+│   │   │       │   │   │   ├── build.make
+│   │   │       │   │   │   ├── cmake_clean.cmake
+│   │   │       │   │   │   ├── compiler_depend.make
+│   │   │       │   │   │   ├── compiler_depend.ts
+│   │   │       │   │   │   ├── DependInfo.cmake
+│   │   │       │   │   │   └── progress.make
+│   │   │       │   │   ├── MLIRMyDialectConversion.dir
+│   │   │       │   │   │   ├── build.make
+│   │   │       │   │   │   ├── cmake_clean.cmake
+│   │   │       │   │   │   ├── cmake_clean_target.cmake
+│   │   │       │   │   │   ├── compiler_depend.make
+│   │   │       │   │   │   ├── compiler_depend.ts
+│   │   │       │   │   │   ├── DependInfo.cmake
+│   │   │       │   │   │   ├── depend.make
+│   │   │       │   │   │   ├── flags.make
+│   │   │       │   │   │   ├── link.txt
+│   │   │       │   │   │   └── progress.make
+│   │   │       │   │   ├── obj.MLIRMyDialectConversion.dir
+│   │   │       │   │   │   ├── build.make
+│   │   │       │   │   │   ├── cmake_clean.cmake
+│   │   │       │   │   │   ├── compiler_depend.make
+│   │   │       │   │   │   ├── compiler_depend.ts
+│   │   │       │   │   │   ├── DependInfo.cmake
+│   │   │       │   │   │   ├── depend.make
+│   │   │       │   │   │   ├── flags.make
+│   │   │       │   │   │   └── progress.make
+│   │   │       │   │   └── progress.marks
+│   │   │       │   ├── cmake_install.cmake
+│   │   │       │   └── Makefile
+│   │   │       ├── IR
+│   │   │       │   ├── CMakeFiles
+│   │   │       │   │   ├── CMakeDirectoryInformation.cmake
+│   │   │       │   │   ├── install-MyDialectIR.dir
+│   │   │       │   │   │   ├── build.make
+│   │   │       │   │   │   ├── cmake_clean.cmake
+│   │   │       │   │   │   ├── compiler_depend.make
+│   │   │       │   │   │   ├── compiler_depend.ts
+│   │   │       │   │   │   ├── DependInfo.cmake
+│   │   │       │   │   │   └── progress.make
+│   │   │       │   │   ├── install-MyDialectIR-stripped.dir
+│   │   │       │   │   │   ├── build.make
+│   │   │       │   │   │   ├── cmake_clean.cmake
+│   │   │       │   │   │   ├── compiler_depend.make
+│   │   │       │   │   │   ├── compiler_depend.ts
+│   │   │       │   │   │   ├── DependInfo.cmake
+│   │   │       │   │   │   └── progress.make
+│   │   │       │   │   ├── MyDialectIR.dir
+│   │   │       │   │   │   ├── build.make
+│   │   │       │   │   │   ├── cmake_clean.cmake
+│   │   │       │   │   │   ├── cmake_clean_target.cmake
+│   │   │       │   │   │   ├── compiler_depend.make
+│   │   │       │   │   │   ├── compiler_depend.ts
+│   │   │       │   │   │   ├── DependInfo.cmake
+│   │   │       │   │   │   ├── depend.make
+│   │   │       │   │   │   ├── flags.make
+│   │   │       │   │   │   ├── link.txt
+│   │   │       │   │   │   └── progress.make
+│   │   │       │   │   ├── obj.MyDialectIR.dir
+│   │   │       │   │   │   ├── build.make
+│   │   │       │   │   │   ├── cmake_clean.cmake
+│   │   │       │   │   │   ├── compiler_depend.internal
+│   │   │       │   │   │   ├── compiler_depend.make
+│   │   │       │   │   │   ├── compiler_depend.ts
+│   │   │       │   │   │   ├── DependInfo.cmake
+│   │   │       │   │   │   ├── depend.make
+│   │   │       │   │   │   ├── flags.make
+│   │   │       │   │   │   ├── MyDialectBase.cpp.o
+│   │   │       │   │   │   ├── MyDialectBase.cpp.o.d
+│   │   │       │   │   │   ├── MyDialectOps.cpp.o
+│   │   │       │   │   │   ├── MyDialectOps.cpp.o.d
+│   │   │       │   │   │   └── progress.make
+│   │   │       │   │   └── progress.marks
+│   │   │       │   ├── cmake_install.cmake
+│   │   │       │   ├── libMyDialectIR.a
+│   │   │       │   └── Makefile
+│   │   │       ├── Makefile
+│   │   │       └── Transforms
+│   │   │           ├── CMakeFiles
+│   │   │           │   ├── CMakeDirectoryInformation.cmake
+│   │   │           │   ├── install-MLIRMyDialectTransforms.dir
+│   │   │           │   │   ├── build.make
+│   │   │           │   │   ├── cmake_clean.cmake
+│   │   │           │   │   ├── compiler_depend.make
+│   │   │           │   │   ├── compiler_depend.ts
+│   │   │           │   │   ├── DependInfo.cmake
+│   │   │           │   │   └── progress.make
+│   │   │           │   ├── install-MLIRMyDialectTransforms-stripped.dir
+│   │   │           │   │   ├── build.make
+│   │   │           │   │   ├── cmake_clean.cmake
+│   │   │           │   │   ├── compiler_depend.make
+│   │   │           │   │   ├── compiler_depend.ts
+│   │   │           │   │   ├── DependInfo.cmake
+│   │   │           │   │   └── progress.make
+│   │   │           │   ├── MLIRMyDialectTransforms.dir
+│   │   │           │   │   ├── build.make
+│   │   │           │   │   ├── cmake_clean.cmake
+│   │   │           │   │   ├── cmake_clean_target.cmake
+│   │   │           │   │   ├── compiler_depend.make
+│   │   │           │   │   ├── compiler_depend.ts
+│   │   │           │   │   ├── DependInfo.cmake
+│   │   │           │   │   ├── depend.make
+│   │   │           │   │   ├── flags.make
+│   │   │           │   │   ├── link.txt
+│   │   │           │   │   └── progress.make
+│   │   │           │   ├── MyDialectPasses.h.inc.dir
+│   │   │           │   │   ├── build.make
+│   │   │           │   │   ├── cmake_clean.cmake
+│   │   │           │   │   ├── compiler_depend.make
+│   │   │           │   │   ├── compiler_depend.ts
+│   │   │           │   │   ├── DependInfo.cmake
+│   │   │           │   │   └── progress.make
+│   │   │           │   ├── obj.MLIRMyDialectTransforms.dir
+│   │   │           │   │   ├── build.make
+│   │   │           │   │   ├── cmake_clean.cmake
+│   │   │           │   │   ├── compiler_depend.make
+│   │   │           │   │   ├── compiler_depend.ts
+│   │   │           │   │   ├── DependInfo.cmake
+│   │   │           │   │   ├── depend.make
+│   │   │           │   │   ├── flags.make
+│   │   │           │   │   └── progress.make
+│   │   │           │   └── progress.marks
+│   │   │           ├── cmake_install.cmake
+│   │   │           ├── Makefile
+│   │   │           └── MyDialectPasses.h.inc
+│   │   └── Makefile
+│   ├── Makefile
+│   ├── tablegen_compile_commands.yml
+│   ├── test
+│   │   ├── CMakeFiles
+│   │   │   ├── check-my-mlir.dir
+│   │   │   │   ├── build.make
+│   │   │   │   ├── cmake_clean.cmake
+│   │   │   │   ├── compiler_depend.make
+│   │   │   │   ├── compiler_depend.ts
+│   │   │   │   ├── DependInfo.cmake
+│   │   │   │   └── progress.make
+│   │   │   ├── CMakeDirectoryInformation.cmake
+│   │   │   └── progress.marks
+│   │   ├── cmake_install.cmake
+│   │   ├── lit.site.cfg.py
+│   │   └── Makefile
+│   └── tools
+│       ├── CMakeFiles
+│       │   ├── CMakeDirectoryInformation.cmake
+│       │   └── progress.marks
+│       ├── cmake_install.cmake
+│       ├── Makefile
+│       └── my-mlir-opt
+│           ├── CMakeFiles
+│           │   ├── CMakeDirectoryInformation.cmake
+│           │   ├── my-mlir-opt.dir
+│           │   │   ├── build.make
+│           │   │   ├── cmake_clean.cmake
+│           │   │   ├── compiler_depend.make
+│           │   │   ├── compiler_depend.ts
+│           │   │   ├── DependInfo.cmake
+│           │   │   ├── depend.make
+│           │   │   ├── flags.make
+│           │   │   ├── link.txt
+│           │   │   └── progress.make
+│           │   └── progress.marks
+│           ├── cmake_install.cmake
+│           └── Makefile
+├── CMakeLists.txt
+├── examples
+│   └── basic.mlir
+├── include
+│   ├── CMakeLists.txt
+│   └── my-mlir
+│       ├── CMakeLists.txt
+│       └── Dialect
+│           ├── CMakeLists.txt
+│           └── MyDialect
+│               ├── CMakeLists.txt
+│               ├── Conversion
+│               │   ├── CMakeLists.txt
+│               │   ├── LowerToTarget.h
+│               │   └── Passes.h
+│               ├── IR
+│               │   ├── CMakeLists.txt
+│               │   ├── MyDialectBase.td
+│               │   ├── MyDialectDialect.h
+│               │   ├── MyDialectOps.h
+│               │   ├── MyDialectOps.td
+│               │   ├── MyDialect.td
+│               │   ├── MyDialectTypes.h
+│               │   └── MyDialectTypes.td
+│               └── Transforms
+│                   ├── CMakeLists.txt
+│                   ├── ExampleTransform.h
+│                   ├── GroupedPasses.h
+│                   ├── MyDialectPasses.td
+│                   ├── Passes.h
+│                   └── Patterns.h
+├── lib
+│   ├── CMakeLists.txt
+│   └── Dialect
+│       ├── CMakeLists.txt
+│       └── MyDialect
+│           ├── CMakeLists.txt
+│           ├── Conversion
+│           │   ├── CMakeLists.txt
+│           │   ├── LowerToTarget.cpp
+│           │   └── Passes.cpp
+│           ├── IR
+│           │   ├── CMakeLists.txt
+│           │   ├── MyDialectBase.cpp
+│           │   └── MyDialectOps.cpp
+│           └── Transforms
+│               ├── CMakeLists.txt
+│               ├── ExampleTransform.cpp
+│               ├── GroupedPasses.cpp
+│               ├── MyTransform.cpp
+│               ├── Passes.cpp
+│               └── Patterns.cpp
+├── README.md
+├── test
+│   ├── CMakeLists.txt
+│   ├── conversion
+│   │   └── lower-to-target.mlir
+│   ├── dialect
+│   │   └── parse-print.mlir
+│   ├── lit.cfg.py
+│   ├── lit.site.cfg.py.in
+│   └── transforms
+│       ├── example-transform.mlir
+│       └── my-transform.mlir
+└── tools
+    ├── CMakeLists.txt
+    └── my-mlir-opt
+        ├── CMakeLists.txt
+        └── my-mlir-opt.cpp
+
+86 directories, 322 files
+.
+├── a.out
+├── build
+│   ├── CMakeCache.txt
+│   ├── CMakeFiles
+│   │   ├── 3.28.3
+│   │   │   ├── CMakeCCompiler.cmake
+│   │   │   ├── CMakeCXXCompiler.cmake
+│   │   │   ├── CMakeDetermineCompilerABI_C.bin
+│   │   │   ├── CMakeDetermineCompilerABI_CXX.bin
+│   │   │   ├── CMakeSystem.cmake
+│   │   │   ├── CompilerIdC
+│   │   │   │   ├── a.out
+│   │   │   │   ├── CMakeCCompilerId.c
+│   │   │   │   └── tmp
+│   │   │   └── CompilerIdCXX
+│   │   │       ├── a.out
+│   │   │       ├── CMakeCXXCompilerId.cpp
+│   │   │       └── tmp
+│   │   ├── acc_gen.dir
+│   │   │   ├── build.make
+│   │   │   ├── cmake_clean.cmake
+│   │   │   ├── compiler_depend.make
+│   │   │   ├── compiler_depend.ts
+│   │   │   ├── DependInfo.cmake
+│   │   │   └── progress.make
+│   │   ├── cmake.check_cache
+│   │   ├── CMakeConfigureLog.yaml
+│   │   ├── CMakeDirectoryInformation.cmake
+│   │   ├── CMakeRuleHashes.txt
+│   │   ├── CMakeScratch
+│   │   ├── intrinsics_gen.dir
+│   │   │   ├── build.make
+│   │   │   ├── cmake_clean.cmake
+│   │   │   ├── compiler_depend.make
+│   │   │   ├── compiler_depend.ts
+│   │   │   ├── DependInfo.cmake
+│   │   │   └── progress.make
+│   │   ├── Makefile2
+│   │   ├── Makefile.cmake
+│   │   ├── mlir-doc.dir
+│   │   │   ├── build.make
+│   │   │   ├── cmake_clean.cmake
+│   │   │   ├── compiler_depend.make
+│   │   │   ├── compiler_depend.ts
+│   │   │   ├── DependInfo.cmake
+│   │   │   └── progress.make
+│   │   ├── mlir-generic-headers.dir
+│   │   │   ├── build.make
+│   │   │   ├── cmake_clean.cmake
+│   │   │   ├── compiler_depend.make
+│   │   │   ├── compiler_depend.ts
+│   │   │   ├── DependInfo.cmake
+│   │   │   └── progress.make
+│   │   ├── mlir-headers.dir
+│   │   │   ├── build.make
+│   │   │   ├── cmake_clean.cmake
+│   │   │   ├── compiler_depend.make
+│   │   │   ├── compiler_depend.ts
+│   │   │   ├── DependInfo.cmake
+│   │   │   └── progress.make
+│   │   ├── mlir-tablegen-targets.dir
+│   │   │   ├── build.make
+│   │   │   ├── cmake_clean.cmake
+│   │   │   ├── compiler_depend.make
+│   │   │   ├── compiler_depend.ts
+│   │   │   ├── DependInfo.cmake
+│   │   │   └── progress.make
+│   │   ├── omp_gen.dir
+│   │   │   ├── build.make
+│   │   │   ├── cmake_clean.cmake
+│   │   │   ├── compiler_depend.make
+│   │   │   ├── compiler_depend.ts
+│   │   │   ├── DependInfo.cmake
+│   │   │   └── progress.make
+│   │   ├── pkgRedirects
+│   │   ├── Progress
+│   │   │   ├── 14
+│   │   │   ├── 19
+│   │   │   ├── 20
+│   │   │   ├── 3
+│   │   │   ├── 4
+│   │   │   ├── 5
+│   │   │   ├── 6
+│   │   │   ├── 7
+│   │   │   ├── 8
+│   │   │   └── count.txt
+│   │   ├── progress.marks
+│   │   ├── RISCVTargetParserTableGen.dir
+│   │   │   ├── build.make
+│   │   │   ├── cmake_clean.cmake
+│   │   │   ├── compiler_depend.make
+│   │   │   ├── compiler_depend.ts
+│   │   │   ├── DependInfo.cmake
+│   │   │   └── progress.make
+│   │   └── TargetDirectories.txt
+│   ├── cmake_install.cmake
+│   ├── include
+│   │   ├── CMakeFiles
+│   │   │   ├── CMakeDirectoryInformation.cmake
+│   │   │   └── progress.marks
+│   │   ├── cmake_install.cmake
+│   │   ├── Makefile
+│   │   └── my-mlir
+│   │       ├── CMakeFiles
+│   │       │   ├── CMakeDirectoryInformation.cmake
+│   │       │   └── progress.marks
+│   │       ├── cmake_install.cmake
+│   │       ├── Dialect
+│   │       │   ├── CMakeFiles
+│   │       │   │   ├── CMakeDirectoryInformation.cmake
+│   │       │   │   └── progress.marks
+│   │       │   ├── cmake_install.cmake
+│   │       │   ├── Makefile
+│   │       │   └── MyDialect
+│   │       │       ├── CMakeFiles
+│   │       │       │   ├── CMakeDirectoryInformation.cmake
+│   │       │       │   └── progress.marks
+│   │       │       ├── cmake_install.cmake
+│   │       │       ├── Conversion
+│   │       │       │   ├── CMakeFiles
+│   │       │       │   │   ├── CMakeDirectoryInformation.cmake
+│   │       │       │   │   └── progress.marks
+│   │       │       │   ├── cmake_install.cmake
+│   │       │       │   └── Makefile
+│   │       │       ├── IR
+│   │       │       │   ├── CMakeFiles
+│   │       │       │   │   ├── CMakeDirectoryInformation.cmake
+│   │       │       │   │   ├── MyDialectIRIncGen.dir
+│   │       │       │   │   │   ├── build.make
+│   │       │       │   │   │   ├── cmake_clean.cmake
+│   │       │       │   │   │   ├── compiler_depend.make
+│   │       │       │   │   │   ├── compiler_depend.ts
+│   │       │       │   │   │   ├── DependInfo.cmake
+│   │       │       │   │   │   └── progress.make
+│   │       │       │   │   └── progress.marks
+│   │       │       │   ├── cmake_install.cmake
+│   │       │       │   ├── Makefile
+│   │       │       │   ├── MyDialectBase.cpp.inc
+│   │       │       │   ├── MyDialectBase.h.inc
+│   │       │       │   ├── MyDialectOps.cpp.inc
+│   │       │       │   └── MyDialectOps.h.inc
+│   │       │       ├── Makefile
+│   │       │       └── Transforms
+│   │       │           ├── CMakeFiles
+│   │       │           │   ├── CMakeDirectoryInformation.cmake
+│   │       │           │   └── progress.marks
+│   │       │           ├── cmake_install.cmake
+│   │       │           └── Makefile
+│   │       └── Makefile
+│   ├── lib
+│   │   ├── CMakeFiles
+│   │   │   ├── CMakeDirectoryInformation.cmake
+│   │   │   └── progress.marks
+│   │   ├── cmake_install.cmake
+│   │   ├── Dialect
+│   │   │   ├── CMakeFiles
+│   │   │   │   ├── CMakeDirectoryInformation.cmake
+│   │   │   │   └── progress.marks
+│   │   │   ├── cmake_install.cmake
+│   │   │   ├── Makefile
+│   │   │   └── MyDialect
+│   │   │       ├── CMakeFiles
+│   │   │       │   ├── CMakeDirectoryInformation.cmake
+│   │   │       │   └── progress.marks
+│   │   │       ├── cmake_install.cmake
+│   │   │       ├── Conversion
+│   │   │       │   ├── CMakeFiles
+│   │   │       │   │   ├── CMakeDirectoryInformation.cmake
+│   │   │       │   │   ├── install-MLIRMyDialectConversion.dir
+│   │   │       │   │   │   ├── build.make
+│   │   │       │   │   │   ├── cmake_clean.cmake
+│   │   │       │   │   │   ├── compiler_depend.make
+│   │   │       │   │   │   ├── compiler_depend.ts
+│   │   │       │   │   │   ├── DependInfo.cmake
+│   │   │       │   │   │   └── progress.make
+│   │   │       │   │   ├── install-MLIRMyDialectConversion-stripped.dir
+│   │   │       │   │   │   ├── build.make
+│   │   │       │   │   │   ├── cmake_clean.cmake
+│   │   │       │   │   │   ├── compiler_depend.make
+│   │   │       │   │   │   ├── compiler_depend.ts
+│   │   │       │   │   │   ├── DependInfo.cmake
+│   │   │       │   │   │   └── progress.make
+│   │   │       │   │   ├── MLIRMyDialectConversion.dir
+│   │   │       │   │   │   ├── build.make
+│   │   │       │   │   │   ├── cmake_clean.cmake
+│   │   │       │   │   │   ├── cmake_clean_target.cmake
+│   │   │       │   │   │   ├── compiler_depend.make
+│   │   │       │   │   │   ├── compiler_depend.ts
+│   │   │       │   │   │   ├── DependInfo.cmake
+│   │   │       │   │   │   ├── depend.make
+│   │   │       │   │   │   ├── flags.make
+│   │   │       │   │   │   ├── link.txt
+│   │   │       │   │   │   └── progress.make
+│   │   │       │   │   ├── obj.MLIRMyDialectConversion.dir
+│   │   │       │   │   │   ├── build.make
+│   │   │       │   │   │   ├── cmake_clean.cmake
+│   │   │       │   │   │   ├── compiler_depend.make
+│   │   │       │   │   │   ├── compiler_depend.ts
+│   │   │       │   │   │   ├── DependInfo.cmake
+│   │   │       │   │   │   ├── depend.make
+│   │   │       │   │   │   ├── flags.make
+│   │   │       │   │   │   └── progress.make
+│   │   │       │   │   └── progress.marks
+│   │   │       │   ├── cmake_install.cmake
+│   │   │       │   └── Makefile
+│   │   │       ├── IR
+│   │   │       │   ├── CMakeFiles
+│   │   │       │   │   ├── CMakeDirectoryInformation.cmake
+│   │   │       │   │   ├── install-MyDialectIR.dir
+│   │   │       │   │   │   ├── build.make
+│   │   │       │   │   │   ├── cmake_clean.cmake
+│   │   │       │   │   │   ├── compiler_depend.make
+│   │   │       │   │   │   ├── compiler_depend.ts
+│   │   │       │   │   │   ├── DependInfo.cmake
+│   │   │       │   │   │   └── progress.make
+│   │   │       │   │   ├── install-MyDialectIR-stripped.dir
+│   │   │       │   │   │   ├── build.make
+│   │   │       │   │   │   ├── cmake_clean.cmake
+│   │   │       │   │   │   ├── compiler_depend.make
+│   │   │       │   │   │   ├── compiler_depend.ts
+│   │   │       │   │   │   ├── DependInfo.cmake
+│   │   │       │   │   │   └── progress.make
+│   │   │       │   │   ├── MyDialectIR.dir
+│   │   │       │   │   │   ├── build.make
+│   │   │       │   │   │   ├── cmake_clean.cmake
+│   │   │       │   │   │   ├── cmake_clean_target.cmake
+│   │   │       │   │   │   ├── compiler_depend.make
+│   │   │       │   │   │   ├── compiler_depend.ts
+│   │   │       │   │   │   ├── DependInfo.cmake
+│   │   │       │   │   │   ├── depend.make
+│   │   │       │   │   │   ├── flags.make
+│   │   │       │   │   │   ├── link.txt
+│   │   │       │   │   │   └── progress.make
+│   │   │       │   │   ├── obj.MyDialectIR.dir
+│   │   │       │   │   │   ├── build.make
+│   │   │       │   │   │   ├── cmake_clean.cmake
+│   │   │       │   │   │   ├── compiler_depend.make
+│   │   │       │   │   │   ├── compiler_depend.ts
+│   │   │       │   │   │   ├── DependInfo.cmake
+│   │   │       │   │   │   ├── depend.make
+│   │   │       │   │   │   ├── flags.make
+│   │   │       │   │   │   ├── MyDialectBase.cpp.o
+│   │   │       │   │   │   ├── MyDialectBase.cpp.o.d
+│   │   │       │   │   │   ├── MyDialectOps.cpp.o
+│   │   │       │   │   │   ├── MyDialectOps.cpp.o.d
+│   │   │       │   │   │   └── progress.make
+│   │   │       │   │   └── progress.marks
+│   │   │       │   ├── cmake_install.cmake
+│   │   │       │   ├── libMyDialectIR.a
+│   │   │       │   └── Makefile
+│   │   │       ├── Makefile
+│   │   │       └── Transforms
+│   │   │           ├── CMakeFiles
+│   │   │           │   ├── CMakeDirectoryInformation.cmake
+│   │   │           │   ├── install-MLIRMyDialectTransforms.dir
+│   │   │           │   │   ├── build.make
+│   │   │           │   │   ├── cmake_clean.cmake
+│   │   │           │   │   ├── compiler_depend.make
+│   │   │           │   │   ├── compiler_depend.ts
+│   │   │           │   │   ├── DependInfo.cmake
+│   │   │           │   │   └── progress.make
+│   │   │           │   ├── install-MLIRMyDialectTransforms-stripped.dir
+│   │   │           │   │   ├── build.make
+│   │   │           │   │   ├── cmake_clean.cmake
+│   │   │           │   │   ├── compiler_depend.make
+│   │   │           │   │   ├── compiler_depend.ts
+│   │   │           │   │   ├── DependInfo.cmake
+│   │   │           │   │   └── progress.make
+│   │   │           │   ├── MLIRMyDialectTransforms.dir
+│   │   │           │   │   ├── build.make
+│   │   │           │   │   ├── cmake_clean.cmake
+│   │   │           │   │   ├── cmake_clean_target.cmake
+│   │   │           │   │   ├── compiler_depend.make
+│   │   │           │   │   ├── compiler_depend.ts
+│   │   │           │   │   ├── DependInfo.cmake
+│   │   │           │   │   ├── depend.make
+│   │   │           │   │   ├── flags.make
+│   │   │           │   │   ├── link.txt
+│   │   │           │   │   └── progress.make
+│   │   │           │   ├── MyDialectPasses.h.inc.dir
+│   │   │           │   │   ├── build.make
+│   │   │           │   │   ├── cmake_clean.cmake
+│   │   │           │   │   ├── compiler_depend.make
+│   │   │           │   │   ├── compiler_depend.ts
+│   │   │           │   │   ├── DependInfo.cmake
+│   │   │           │   │   └── progress.make
+│   │   │           │   ├── obj.MLIRMyDialectTransforms.dir
+│   │   │           │   │   ├── build.make
+│   │   │           │   │   ├── cmake_clean.cmake
+│   │   │           │   │   ├── compiler_depend.make
+│   │   │           │   │   ├── compiler_depend.ts
+│   │   │           │   │   ├── DependInfo.cmake
+│   │   │           │   │   ├── depend.make
+│   │   │           │   │   ├── flags.make
+│   │   │           │   │   └── progress.make
+│   │   │           │   └── progress.marks
+│   │   │           ├── cmake_install.cmake
+│   │   │           ├── Makefile
+│   │   │           └── MyDialectPasses.h.inc
+│   │   └── Makefile
+│   ├── Makefile
+│   ├── tablegen_compile_commands.yml
+│   ├── test
+│   │   ├── CMakeFiles
+│   │   │   ├── check-my-mlir.dir
+│   │   │   │   ├── build.make
+│   │   │   │   ├── cmake_clean.cmake
+│   │   │   │   ├── compiler_depend.make
+│   │   │   │   ├── compiler_depend.ts
+│   │   │   │   ├── DependInfo.cmake
+│   │   │   │   └── progress.make
+│   │   │   ├── CMakeDirectoryInformation.cmake
+│   │   │   └── progress.marks
+│   │   ├── cmake_install.cmake
+│   │   ├── lit.site.cfg.py
+│   │   └── Makefile
+│   └── tools
+│       ├── CMakeFiles
+│       │   ├── CMakeDirectoryInformation.cmake
+│       │   └── progress.marks
+│       ├── cmake_install.cmake
+│       ├── Makefile
+│       └── my-mlir-opt
+│           ├── CMakeFiles
+│           │   ├── CMakeDirectoryInformation.cmake
+│           │   ├── my-mlir-opt.dir
+│           │   │   ├── build.make
+│           │   │   ├── cmake_clean.cmake
+│           │   │   ├── compiler_depend.make
+│           │   │   ├── compiler_depend.ts
+│           │   │   ├── DependInfo.cmake
+│           │   │   ├── depend.make
+│           │   │   ├── flags.make
+│           │   │   ├── link.txt
+│           │   │   └── progress.make
+│           │   └── progress.marks
+│           ├── cmake_install.cmake
+│           └── Makefile
+├── CMakeLists.txt
+├── examples
+│   └── basic.mlir
+├── include
+│   ├── CMakeLists.txt
+│   └── my-mlir
+│       ├── CMakeLists.txt
+│       └── Dialect
+│           ├── CMakeLists.txt
+│           └── MyDialect
+│               ├── CMakeLists.txt
+│               ├── Conversion
+│               │   ├── CMakeLists.txt
+│               │   ├── LowerToTarget.h
+│               │   └── Passes.h
+│               ├── IR
+│               │   ├── CMakeLists.txt
+│               │   ├── MyDialectBase.td
+│               │   ├── MyDialectDialect.h
+│               │   ├── MyDialectOps.h
+│               │   ├── MyDialectOps.td
+│               │   ├── MyDialect.td
+│               │   ├── MyDialectTypes.h
+│               │   └── MyDialectTypes.td
+│               └── Transforms
+│                   ├── CMakeLists.txt
+│                   ├── ExampleTransform.h
+│                   ├── GroupedPasses.h
+│                   ├── MyDialectPasses.td
+│                   ├── Passes.h
+│                   └── Patterns.h
+├── lib
+│   ├── CMakeLists.txt
+│   └── Dialect
+│       ├── CMakeLists.txt
+│       └── MyDialect
+│           ├── CMakeLists.txt
+│           ├── Conversion
+│           │   ├── CMakeLists.txt
+│           │   ├── LowerToTarget.cpp
+│           │   └── Passes.cpp
+│           ├── IR
+│           │   ├── CMakeLists.txt
+│           │   ├── MyDialectBase.cpp
+│           │   └── MyDialectOps.cpp
+│           └── Transforms
+│               ├── CMakeLists.txt
+│               ├── ExampleTransform.cpp
+│               ├── GroupedPasses.cpp
+│               ├── MyTransform.cpp
+│               ├── Passes.cpp
+│               └── Patterns.cpp
+├── README.md
+├── test
+│   ├── CMakeLists.txt
+│   ├── conversion
+│   │   └── lower-to-target.mlir
+│   ├── dialect
+│   │   └── parse-print.mlir
+│   ├── lit.cfg.py
+│   ├── lit.site.cfg.py.in
+│   └── transforms
+│       ├── example-transform.mlir
+│       └── my-transform.mlir
+└── tools
+    ├── CMakeLists.txt
+    └── my-mlir-opt
+        ├── CMakeLists.txt
+        └── my-mlir-opt.cpp
+
+87 directories, 321 files

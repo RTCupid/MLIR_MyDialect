@@ -3,4 +3,9 @@
 
 include "my-mlir/Dialect/MyDialect/IR/MyDialectBase.td"
 
+class MyDialect_Type<string name, string typeMnemonic>
+    : TypeDef<MyDialect_Dialect, name> {
+  let mnemonic = typeMnemonic;
+}
+
 #endif

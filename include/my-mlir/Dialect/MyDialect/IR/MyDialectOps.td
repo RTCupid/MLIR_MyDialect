@@ -3,6 +3,12 @@
 
 include "mlir/IR/OpBase.td"
 include "my-mlir/Dialect/MyDialect/IR/MyDialectBase.td"
+include "my-mlir/Dialect/MyDialect/IR/MyDialectTypes.td"
+
+include "mlir/Interfaces/SideEffectInterfaces.td"
+
+class MyDialect_Op<string mnemonic, list<Trait> traits = []>
+    : Op<MyDialect_Dialect, mnemonic, traits>;
 
 def MyDialect_WrapOp
     : MyDialect_Op<"wrap"> {
@@ -18,23 +24,34 @@ def MyDialect_UnwrapOp
   let results = (outs AnyType:$result);
 }
 
-def MyDialect_Add
+def TransposeOp : MyDialect_Op<"transpose", [Pure, AllTypesMatch<["input", "output"]>]> {
+  let summary = "Transpose operation";
+  let arguments = (ins F64Tensor:$input);
+  let results = (outs F64Tensor:$output);
+  let assemblyFormat = "$input attr-dict `:` type($input)";
+}
+
+def MyDialect_PrintOp : MyDialect_Op<"print"> {
+  let arguments = (ins F64Tensor:$input);
+
+  let assemblyFormat = "$input attr-dict `:` type($input)";
+}
+
+def MyDialect_AddOp
     : MyDialect_Op<"add"> {
-  let summary = "Add two values";
+  let summary = "Get sum of two values";
 
   let description = [{
     Scheme of operation's job:
-    result value = first + second
-  }]
+    result value = first + second;
+  }];
 
-  let arguments = (ins
+  let arguments = (ins F64Tensor: $lhs, F64Tensor: $rhs);
+  let results = (outs F64Tensor: $result);
 
-  )
+  let assemblyFormat = "$lhs `,` $rhs attr-dict `:` type($lhs)";
 
-  let results = (outs
-    
-  )
-
+  let traits = [AllTypesMatch<["lhs", "rhs", "result"]>];
 }
 
 #endif

@@ -6,6 +6,7 @@
 #include "mlir/IR/OpDefinition.h"
 
 #include "my-mlir/Dialect/MyDialect/IR/MyDialectDialect.h"
+#include "mlir/Interfaces/SideEffectInterfaces.h"
 
 #define GET_OP_CLASSES
 #include "my-mlir/Dialect/MyDialect/IR/MyDialectOps.h.inc"

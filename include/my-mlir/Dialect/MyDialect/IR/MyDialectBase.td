@@ -6,15 +6,15 @@ include "mlir/IR/OpBase.td"
 
 def MyDialect_Dialect : Dialect {
   let name = "mydialect";
+
+  let summary = "A high-level dialect that provides addition and multiplication operations";
+
+  let description = [{
+    The Compute language is a tensor-based language that allows you to define
+    functions, perform some match computation, and print results.
+  }];
+
   let cppNamespace = "::mlir::my_project";
 }
-
-class MyDialect_Type<string name, string typeMnemonic>
-    : TypeDef<MyDialect_Dialect, name> {
-  let mnemonic = typeMnemonic;
-}
-
-class MyDialect_Op<string mnemonic, list<Trait> traits = []>
-    : Op<MyDialect_Dialect, mnemonic, traits>;
 
 #endif

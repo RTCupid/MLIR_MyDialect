@@ -7,10 +7,16 @@
 namespace mlir {
 namespace my_project {
 
-void registerMyDialectPasses();
 std::unique_ptr<Pass> createExampleTransformPass();
+std::unique_ptr<Pass> createMyTransformPass();
+void registerMyDialectPasses();
 
 }  // namespace my_project
 }  // namespace mlir
+
+#define GEN_PASS_REGISTRATION
+#include "MyDialectPasses.h.inc"
+#undef GEN_PASS_REGISTRATION
+
 
 #endif
