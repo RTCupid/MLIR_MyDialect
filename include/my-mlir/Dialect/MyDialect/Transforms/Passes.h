@@ -7,7 +7,6 @@
 namespace mlir {
 namespace my_project {
 
-std::unique_ptr<Pass> createExampleTransformPass();
 std::unique_ptr<Pass> createMyTransformPass();
 void registerMyDialectPasses();
 

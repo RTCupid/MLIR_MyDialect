@@ -12,8 +12,6 @@ add_public_tablegen_target(MLIRMyDialectPassIncGen)
 add_mlir_library(MLIRMyDialectTransforms
   Passes.cpp
   Patterns.cpp
-  GroupedPasses.cpp
-  ExampleTransform.cpp
   MyTransform.cpp
 
   DEPENDS
