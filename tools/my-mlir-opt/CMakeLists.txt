@@ -7,7 +7,6 @@ llvm_update_compile_flags(my-mlir-opt)
 target_link_libraries(my-mlir-opt PRIVATE
   MyDialectIR
   MLIRMyDialectTransforms
-  MLIRMyDialectConversion
   MLIRArithDialect
   MLIRFuncDialect
   MLIRIR

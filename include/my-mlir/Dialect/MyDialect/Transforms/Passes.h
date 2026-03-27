@@ -17,5 +17,4 @@ void registerMyDialectPasses();
 #include "MyDialectPasses.h.inc"
 #undef GEN_PASS_REGISTRATION
 
-
 #endif
