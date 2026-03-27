@@ -76,8 +76,8 @@ and replaces it with the original value `%arg0` when the tensor types match.
 The pass uses the greedy pattern rewrite driver (`GreedyPatternRewriteDriver`) and can be included in an `MLIR` optimization pipeline.
 
 ## Example Usage
-
-Original MLIR code:
+To run my transform for `transpose` operation use option `-my-transform`. Example of transformation:
+original MLIR code:
 ```mlir
 module {
   func.func @test(%arg0: tensor<4x4xf64>) -> tensor<4x4xf64> {
@@ -88,7 +88,7 @@ module {
 }
 ```
 
-After applying the my-transform pass:
+after applying the my-transform pass:
 
 ```mlir
 module {
